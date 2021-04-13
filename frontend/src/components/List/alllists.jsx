@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import CreateList from "./createlist";
-
-import "./style.css";
+import "../style.css";
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import List from './List';

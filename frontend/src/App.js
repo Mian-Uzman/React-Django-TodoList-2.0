@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Navbar1 from "./components/navbar";
-import HomePage from "./components/homepage";
-import ToDoList from "./components/alllists";
-import Items from "./components/items";
-import Login from "./components/login";
-import Register from "./components/register";
-import Footer from "./components/footer";
+import Navbar1 from "./components/UI/navbar";
+import HomePage from "./components/UI/homepage";
+import ToDoList from "./components/List/alllists";
+import Items from "./components/Items/items";
+import Login from "./components/Auth/login";
+import Register from "./components/Auth/register";
+import Footer from "./components/UI/footer";
 import {
   BrowserRouter as Router,
   Switch,

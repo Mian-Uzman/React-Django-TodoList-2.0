@@ -1,4 +1,4 @@
-import "./style.css";
+import "../style.css";
 import PropTypes from 'prop-types';
 import { useState } from "react";
 
@@ -7,12 +7,13 @@ function Login({ handle_login }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-
-    const handle_change = (e) => {
-        const name = e.target.name;
+    const set_username = e => {
         const value = e.target.value;
-        setUsername(value.username);
-        setPassword(value.password);
+        setUsername(value);
+    }
+    const set_password = (e) => {
+        const value = e.target.value;
+        setPassword(value);
 
     };
 
@@ -30,7 +31,7 @@ function Login({ handle_login }) {
                         name="username"
                         placeholder="Enter email"
                         value={username}
-                        onChange={handle_change}
+                        onChange={set_username}
                     />
                 </div>
 
@@ -42,7 +43,7 @@ function Login({ handle_login }) {
                         type="password"
                         name="password"
                         value={password}
-                        onChange={handle_change}
+                        onChange={set_password}
                     />
                 </div>
 

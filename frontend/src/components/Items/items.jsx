@@ -5,8 +5,7 @@ import { InputGroup, FormControl } from "react-bootstrap";
 import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
-import { Link } from 'react-router-dom';
-import { Dropdown, ButtonGroup, DropdownButton, SplitButton } from 'react-bootstrap';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 
 
@@ -25,7 +24,7 @@ function Items(props) {
     }])
     useEffect(() => {
         getAllItems();
-    }, [deleteItem, updateItem, handleSubmitButton]);
+    }, [deleteItem]);
 
     function getAllItems() {
         axios.get(`/api/get-items/${listID}`,
@@ -48,6 +47,7 @@ function Items(props) {
 
     function updateItem(item) {
         const index = allItems.indexOf(item);
+        console.log(listID)
         const requestOptions = {
             method: "PUT",
             headers: {
@@ -59,7 +59,7 @@ function Items(props) {
             text: allItems[index].text,
             complete: allItems[index].complete,
             name: listID
-        }, requestOptions).catch(err => console.log(err));
+        }, requestOptions).then(response => console.log(response.data)).catch(err => console.log(err));
     }
 
 
@@ -89,6 +89,7 @@ function Items(props) {
         const array = [...allItems];
         array[index].complete = e.target.checked;
         SetAllItems(array);
+        console.log(allItems[index].complete)
     }
 
     function renderDropdown() {
@@ -140,7 +141,6 @@ function Items(props) {
             complete: newItem.complete,
             name: listID,
         }, requestOptions)
-        console.log(newItem);
     }
 
 
