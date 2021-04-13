@@ -8,11 +8,11 @@ function Login({ handle_login }) {
     const [password, setPassword] = useState('');
 
 
-    function handle_change(e) {
+    const handle_change = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        setUsername(name);
-        setPassword(value);
+        setUsername(value.username);
+        setPassword(value.password);
 
     };
 
@@ -56,7 +56,7 @@ function Login({ handle_login }) {
                 <button
                     type="submit"
                     className="btn btn-primary btn-block"
-                    onClick={(e) => handle_login(e, username, password)}>Login</button>
+                    onClick={(e) => handle_login(e, { username, password })}>Login</button>
                 <p className="forgot-password text-right">
                     Forgot <a href="#">password?</a>
                 </p>
