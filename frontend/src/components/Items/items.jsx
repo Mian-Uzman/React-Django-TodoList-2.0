@@ -3,9 +3,7 @@ import axios from "axios";
 import NewItem from "./NewItem";
 import { InputGroup, FormControl } from "react-bootstrap";
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
 import { Dropdown, DropdownButton } from 'react-bootstrap';
-import { alignPropType } from 'react-bootstrap/esm/DropdownMenu';
 
 
 
