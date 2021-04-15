@@ -59,8 +59,8 @@ function ToDoList() {
     return (
         <div className='all-lists'>
             <h3>Total Lists: {todolist.length}</h3>
-            <Table striped bordered hover>
-                <thead>
+            <Table className="table table-bordered table-hover" >
+                <thead className="thead-dark">
                     <tr>
                         <th>ID</th>
                         <th>List Name</th>

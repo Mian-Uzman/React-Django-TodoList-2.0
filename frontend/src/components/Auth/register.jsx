@@ -74,14 +74,14 @@ function Register({ handle_signup, setDisplayForm }) {
 
                 <button
                     type="submit"
-                    className="btn btn-primary btn-block mb-3"
+                    className="btn btn-outline-dark btn-block mb-3"
                     onClick={(e) => {
                         (password === passwordAgain)
                             ? handle_signup(e, { username, password, passwordAgain })
                             : handleWrongPass(e)
                     }}>Sign Up</button>
                 <p className="forgot-password text-right">
-                    Already registered <button className='btn btn-primary' onClick={() => setDisplayForm(true)}>Sign In</button>
+                    Already registered <button className='btn btn-outline-info' onClick={() => setDisplayForm(true)}>Sign In</button>
                 </p>
             </form>
         </div>

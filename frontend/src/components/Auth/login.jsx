@@ -59,12 +59,12 @@ function Login({ handle_login, setDisplayForm }) {
 
                 <button
                     type="submit"
-                    className="btn btn-primary btn-block mb-3"
+                    className="btn btn-outline-dark btn-block mb-3"
                     onClick={(e) => handle_login(e, { username, password })}>Login</button>
 
             </form>
             <p className="forgot-password text-right">
-                Not registered?  <button className='btn btn-primary ' onClick={() => setDisplayForm(false)}>
+                Not registered?  <button className='btn btn-outline-info' onClick={() => setDisplayForm(false)}>
                     Register
           </button>
             </p>

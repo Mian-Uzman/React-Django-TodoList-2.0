@@ -12,20 +12,14 @@ margin:0;
 .heading{
     text-align: center;
 }
-.list-heading{
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
 
-.list-content{
-    font-size: larger;
-}
+
+
 
 .item-input{
     
     margin-top: 50px;
-    width: 30%;
+    width: 40%;
     margin-bottom: 50px;
 }
 
@@ -43,8 +37,7 @@ margin:0;
 }
 
 .footer{
-    margin-top: 200px;
-    max-height: 20px;
+    margin-top: 300px;
 }
 .footer-list {
     display: flex;
@@ -53,14 +46,23 @@ margin:0;
 }
 
 .login-screen{
-    margin-top: 20px;
+    margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
-    width: 350px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #696969;
+    width: 400px;
+    padding: 10px;
 }
 .register-screen{
-    margin-top: 20px;
+    padding: 10px;
+
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #696969;
+    margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
-    width: 350px;
+    width: 400px;
 }

@@ -5,6 +5,7 @@ import { InputGroup, FormControl } from "react-bootstrap";
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { alignPropType } from 'react-bootstrap/esm/DropdownMenu';
 
 
 
@@ -67,10 +68,10 @@ function Items(props) {
     const showStatus = (item) => {
         const index = allItems.indexOf(item);
         if (allItems[index].complete === true) {
-            return (<td>Completed</td>);
+            return (<>Completed</>);
         }
         else {
-            return (<td>In-Complete</td>);
+            return (<>In-Complete</>);
         }
     }
 
@@ -103,16 +104,17 @@ function Items(props) {
     }
 
     const showItems = (e) => {
-        if (e === '1') {
 
+        if (e === '1') {
+            setChangeDetection(true);
         }
-        if (e === '2') {
+        else if (e === '2') {
             const array = [allItems.filter(item => item.complete === true)];
-            SetAllItems(array);
+            SetAllItems(...array);
         }
-        if (e === '3') {
+        else if (e === '3') {
             const array = [allItems.filter(item => item.complete === false)];
-            SetAllItems(array);
+            SetAllItems(...array);
         }
     }
 
@@ -154,11 +156,11 @@ function Items(props) {
         <div className="all-lists">
             <h3>Items in: {name} </h3>
             {renderDropdown()}
-            <Table striped bordered hover className='mt-3'>
+            <Table className="table table-bordered table-hover  mt-3">
 
-                <thead>
+                <thead className="thead-dark">
                     <tr>
-                        <th>ID</th>
+                        <th >ID</th>
                         <th>Status</th>
                         <th>Item Name</th>
                         <th>Edit</th>
@@ -167,9 +169,9 @@ function Items(props) {
                 <tbody>
                     {allItems.map((item, index) => (
                         <tr key={item.id}>
-                            <td>{index + 1}</td>
-                            {showStatus(item)}
-                            <td>
+                            <td className="table-active" style={{ width: '10%' }}>{index + 1}</td>
+                            <td style={{ width: '15%' }}> {showStatus(item)}</td>
+                            <td style={{ width: '45%' }}>
                                 <InputGroup className="mb-1 mt-1">
                                     <InputGroup.Prepend>
                                         <InputGroup.Checkbox
@@ -182,15 +184,19 @@ function Items(props) {
                                         onChange={(e) => handleUpdateText(item, e)} />
                                 </InputGroup>
                             </td>
-                            <td>
-                                <Button
-                                    className="btn btn-sm mr-2"
+                            <td style={{ width: '30%' }}>
+
+                                <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-info mr-2"
                                     onClick={() => updateItem(item)}>Update
-                                </Button>
-                                <Button
-                                    className="btn btn-sm btn-danger"
+                            </button>
+                                <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-danger"
                                     onClick={() => deleteItem(item)}>Delete
-                                </Button>
+                            </button>
+
                             </td>
                         </tr>
                     ))}

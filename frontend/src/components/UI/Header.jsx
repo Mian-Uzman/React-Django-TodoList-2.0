@@ -9,7 +9,6 @@ function Header({ username, handle_logout, logged_in }) {
         return (
             <Nav className="justify-content-end">
                 <Navbar.Brand >Not logged in</Navbar.Brand>
-
             </Nav>
         )
 
@@ -30,7 +29,7 @@ function Header({ username, handle_logout, logged_in }) {
     return (
         <React.Fragment>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Navbar.Brand style={{ fontFamily: "Blackadder ITC", fontSize: "35px" }}>Uzman</Navbar.Brand>
+                <Navbar.Brand style={{ fontFamily: "Blackadder ITC", fontSize: "30px" }}>Uzman</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">

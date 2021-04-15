@@ -20,12 +20,12 @@ function NewItem({ handleAddText, handleSubmitButton }) {
 
                 <button
                     type="button"
-                    className="btn btn-success"
+                    className="btn btn-outline-info"
                     onClick={handleSubmitButton}>Create
                             </button>
 
                 <Link to="/lists/">
-                    <button className="ml-2 btn btn-dark" variant="dark">Back</button>
+                    <button className="ml-2 btn btn-outline-dark" variant="dark">Back</button>
                 </Link>
             </div>
         </React.Fragment>

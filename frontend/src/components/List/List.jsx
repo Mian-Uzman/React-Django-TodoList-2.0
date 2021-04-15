@@ -8,20 +8,21 @@ function List({ todolist, deleteList }) {
             {
                 todolist.map((item, index) => (
                     <tr key={item.id}>
-                        <td >{index + 1}</td>
-                        <td >{item.name}</td>
-                        <td >
+                        <td style={{ width: '10%' }} className="table-active">{index + 1}</td>
+                        <td style={{ width: '50%' }}>{item.name}</td>
+                        <td style={{ width: '40%' }}>
                             <Link
                                 to={{
                                     pathname: `/lists/${item.id}`,
                                     name: item.name,
 
                                 }}>
-                                <Button className="btn btn-primary mr-3">Add Item</Button>
+                                <button className=" btn btn-outline-info" >Add Item</button>
+
                             </Link>
-                            <Button
-                                className="btn btn-danger"
-                                onClick={() => deleteList(item)}>Delete</Button>
+                            <button className="ml-3 btn btn-outline-danger" onClick={() => deleteList(item)}>Delete</button>
+
+
                         </td>
                     </tr>
                 ))
