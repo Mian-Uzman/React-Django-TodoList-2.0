@@ -14,7 +14,7 @@ function List({ todolist, deleteList }) {
                             <Link
                                 to={{
                                     pathname: `/lists/${item.id}`,
-                                    nameList: item.name,
+                                    name: item.name,
 
                                 }}>
                                 <Button className="btn btn-primary mr-3">Add Item</Button>

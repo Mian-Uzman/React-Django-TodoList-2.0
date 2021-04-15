@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from "axios";
-import NewItem from "./newitem";
+import NewItem from "./NewItem";
 import { InputGroup, FormControl } from "react-bootstrap";
 import Table from 'react-bootstrap/Table'
-import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 
@@ -11,43 +10,42 @@ import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 function Items(props) {
     const listID = props.match.params.listID;
-    const name = props.location.nameList;
+    const name = props.location.name;
     const [allItems, SetAllItems] = useState([{
-        id: "",
-        text: "",
-        complete: "",
+        id: null,
+        text: null,
+        complete: null,
     }]);
     const [newItem, SetNewItem] = useState([{
         id: "",
         text: "",
         complete: false,
-    }])
-    useEffect(() => {
-        getAllItems();
-    }, [deleteItem]);
+    }]);
+    const [changeDetection, setChangeDetection] = useState(false);
 
-    function getAllItems() {
+
+
+
+    const getAllItems = () => {
         axios.get(`/api/get-items/${listID}`,
             { headers: { "authorization": `JWT ${localStorage.getItem('token')}` } })
             .then(response => {
                 SetAllItems(response.data);
-
             })
             .catch(err => console.log(err));
     }
 
 
-
-    function deleteItem(item) {
+    const deleteItem = (item) => {
         const index = allItems.indexOf(item);
         axios.delete(`/api/delete-item/${allItems[index].id}`,
             { headers: { "authorization": `JWT ${localStorage.getItem('token')}` } })
             .catch(err => console.log(err));
+        setChangeDetection(true);
     }
 
-    function updateItem(item) {
+    const updateItem = (item) => {
         const index = allItems.indexOf(item);
-        console.log(listID)
         const requestOptions = {
             method: "PUT",
             headers: {
@@ -59,11 +57,14 @@ function Items(props) {
             text: allItems[index].text,
             complete: allItems[index].complete,
             name: listID
-        }, requestOptions).then(response => console.log(response.data)).catch(err => console.log(err));
+        }, requestOptions).catch(err => console.log(err));
+        setChangeDetection(true);
+
     }
 
 
-    function showStatus(item) {
+
+    const showStatus = (item) => {
         const index = allItems.indexOf(item);
         if (allItems[index].complete === true) {
             return (<td>Completed</td>);
@@ -73,26 +74,22 @@ function Items(props) {
         }
     }
 
-
-    function handleUpdateText(item, e) {
-        const index = allItems.indexOf(item);
-        const array = [...allItems];
-        array[index].text = e.target.value;
-        SetAllItems(array);
-        console.log(allItems[index].text)
-
-    }
-
-
-    function handleUpdateComplete(item, e) {
+    const handleUpdateComplete = (item, e) => {
         const index = allItems.indexOf(item);
         const array = [...allItems];
         array[index].complete = e.target.checked;
         SetAllItems(array);
-        console.log(allItems[index].complete)
+
+    }
+    const handleUpdateText = (item, e) => {
+        const index = allItems.indexOf(item);
+        const array = [...allItems];
+        array[index].text = e.target.value;
+        SetAllItems(array);
     }
 
-    function renderDropdown() {
+
+    const renderDropdown = () => {
         return (
             <DropdownButton
                 id="dropdown-basic-button"
@@ -105,28 +102,28 @@ function Items(props) {
         )
     }
 
-    function showItems(e) {
+    const showItems = (e) => {
         if (e === '1') {
 
         }
         if (e === '2') {
-            const array = [allItems.filter(item => item.complete == true)];
+            const array = [allItems.filter(item => item.complete === true)];
             SetAllItems(array);
         }
         if (e === '3') {
-            const array = [allItems.filter(item => item.complete == false)];
+            const array = [allItems.filter(item => item.complete === false)];
             SetAllItems(array);
         }
     }
 
     //Adding a new item
-    function handleAddText(e) {
+    const handleAddText = (e) => {
         const array = [...newItem];
         array.text = e.target.value;
         SetNewItem(array);
     }
 
-    function handleSubmitButton() {
+    const handleSubmitButton = () => {
         const requestOptions = {
             method: "POST",
             headers: {
@@ -140,14 +137,22 @@ function Items(props) {
             text: newItem.text,
             complete: newItem.complete,
             name: listID,
-        }, requestOptions)
+        }, requestOptions).catch(err => console.log(err));
+        setChangeDetection(true);
+
     }
+
+
+    useEffect(() => {
+        getAllItems();
+        setChangeDetection(false);
+    }, [changeDetection]);
 
 
 
     return (
-        <Container style={{ marginTop: '100px' }}>
-            <h3>Items in: {name}</h3>
+        <div className="all-lists">
+            <h3>Items in: {name} </h3>
             {renderDropdown()}
             <Table striped bordered hover className='mt-3'>
 
@@ -169,7 +174,7 @@ function Items(props) {
                                     <InputGroup.Prepend>
                                         <InputGroup.Checkbox
                                             checked={item.complete}
-                                            onChange={(e) => handleUpdateComplete(item, e, index)} />
+                                            onChange={(e) => handleUpdateComplete(item, e)} />
                                     </InputGroup.Prepend>
                                     <FormControl
                                         aria-label="Text input with checkbox"
@@ -177,14 +182,15 @@ function Items(props) {
                                         onChange={(e) => handleUpdateText(item, e)} />
                                 </InputGroup>
                             </td>
-                            <td><Button
-                                className="btn btn-sm mr-2"
-                                onClick={() => updateItem(item)}>Update
-                                        </Button>
+                            <td>
+                                <Button
+                                    className="btn btn-sm mr-2"
+                                    onClick={() => updateItem(item)}>Update
+                                </Button>
                                 <Button
                                     className="btn btn-sm btn-danger"
                                     onClick={() => deleteItem(item)}>Delete
-                                        </Button>
+                                </Button>
                             </td>
                         </tr>
                     ))}
@@ -193,8 +199,7 @@ function Items(props) {
             <NewItem
                 handleAddText={handleAddText}
                 handleSubmitButton={handleSubmitButton} />
-
-        </Container>
+        </div>
     )
 }
 

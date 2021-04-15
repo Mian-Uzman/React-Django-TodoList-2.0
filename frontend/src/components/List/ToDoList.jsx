@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import CreateList from "./createlist";
+import CreateList from "./CreateList";
 import "../style.css";
 import Table from 'react-bootstrap/Table';
-import Container from 'react-bootstrap/Container';
 import List from './List';
 
 
-
-export default function ToDoList() {
+function ToDoList() {
     const [todolist, SetTodolist] = useState([{
         name: null, id: null
     }]);
     const [newList, SetNewList] = useState(null);
+    const [changeDetection, setChangeDetection] = useState(false);
 
-    useEffect(() => {
-        getAllList();
-    }, [handleSubmitButton, deleteList]);
 
-    function getAllList() {
+    const getAllList = () => {
         axios.get("/api/get-list/",
             { headers: { "authorization": `JWT ${localStorage.getItem('token')}` } })
             .then(response => {
@@ -28,17 +24,17 @@ export default function ToDoList() {
 
     }
 
-    function deleteList(item) {
+    const deleteList = (item) => {
         const index = todolist.indexOf(item);
         axios.delete(`/api/delete-list/${todolist[index].id}`,
             { headers: { "authorization": `JWT ${localStorage.getItem('token')}` } })
             .catch(err => console.log(err));
-
+        setChangeDetection(true);
     }
-    function handleAddList(e) {
+    const handleAddList = (e) => {
         SetNewList(e.target.value);
     }
-    function handleSubmitButton() {
+    const handleSubmitButton = () => {
         const requestOptions = {
             method: "POST",
             headers: {
@@ -50,31 +46,43 @@ export default function ToDoList() {
         axios.post("/api/add-list/", {
             name: newList,
         }, requestOptions).catch(err => console.log(err));
+        setChangeDetection(true);
 
     }
+
+    useEffect(() => {
+        getAllList();
+        setChangeDetection(false);
+
+    }, [changeDetection]);
+
     return (
-        <React.Fragment>
-            <Container style={{ marginTop: '100px' }}>
-                <h3>Total Lists: {todolist.length}</h3>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>List Name</th>
-                            <th>Edit</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <List todolist={todolist} deleteList={deleteList} />
-                    </tbody>
-                </Table>
-                <CreateList
-                    handleAddList={handleAddList}
-                    handleSubmitButton={handleSubmitButton} />
-            </Container>
-        </React.Fragment >
+        <div className='all-lists'>
+            <h3>Total Lists: {todolist.length}</h3>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>List Name</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <List todolist={todolist} deleteList={deleteList} />
+                </tbody>
+            </Table>
+            <CreateList
+                handleAddList={handleAddList}
+                handleSubmitButton={handleSubmitButton} />
+        </div >
     )
 }
 
+
+
+
+
+
+export default ToDoList
 
 

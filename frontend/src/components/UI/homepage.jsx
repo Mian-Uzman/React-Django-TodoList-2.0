@@ -2,9 +2,7 @@ import React from 'react';
 import "../style.css"
 import { Card, Container } from "react-bootstrap";
 
-
-
-export default function HomePage() {
+function HomePage() {
     return (
         <React.Fragment>
             <Container style={{ marginTop: '50px' }}>
@@ -19,7 +17,7 @@ export default function HomePage() {
                             <Card.Subtitle className="mb-2 mt-2 text-muted">Add your first list to start getting things done!</Card.Subtitle>
                             <Card.Text>
                                 Each individual list can contain sub-items related to it.
-                        </Card.Text>
+                    </Card.Text>
                             <Card.Link href="/lists/">Add your first list...</Card.Link>
                         </Card.Body>
                     </Card>
@@ -31,7 +29,7 @@ export default function HomePage() {
                             <Card.Subtitle className="mb-2 mt-2 text-muted">Add ToDo-items in each list</Card.Subtitle>
                             <Card.Text>
                                 Manage the items in your lists, mark them complete or delete them if you need !
-                        </Card.Text>
+                    </Card.Text>
                             <Card.Link href="/lists/">Show all Lists...</Card.Link>
                         </Card.Body>
                     </Card>
@@ -41,5 +39,5 @@ export default function HomePage() {
     )
 }
 
-
+export default HomePage;
 

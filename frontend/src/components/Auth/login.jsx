@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 
 
-function Login({ handle_login }) {
+function Login({ handle_login, setDisplayForm }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -19,9 +19,12 @@ function Login({ handle_login }) {
 
 
     return (
-        <div>
+        <div className='login-screen'>
             <form>
-                <h3>Sign In</h3>
+                <div className='heading'>
+                    <h3>Sign In</h3>
+
+                </div>
 
                 <div className="form-group">
                     <label>Username</label>
@@ -56,17 +59,21 @@ function Login({ handle_login }) {
 
                 <button
                     type="submit"
-                    className="btn btn-primary btn-block"
+                    className="btn btn-primary btn-block mb-3"
                     onClick={(e) => handle_login(e, { username, password })}>Login</button>
-                <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
-                </p>
+
             </form>
+            <p className="forgot-password text-right">
+                Not registered?  <button className='btn btn-primary ' onClick={() => setDisplayForm(false)}>
+                    Register
+          </button>
+            </p>
+
         </div>
     )
 }
 
-export default Login
+export default Login;
 
 
 

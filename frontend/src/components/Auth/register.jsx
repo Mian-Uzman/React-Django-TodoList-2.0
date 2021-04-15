@@ -1,34 +1,41 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 
-export default class Register extends Component {
-    state = {
-        username: '',
-        password: '',
-        passwordAgain: ''
-    };
+function Register({ handle_signup, setDisplayForm }) {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordAgain, setPasswordAgain] = useState('');
 
-    handle_change = e => {
-        const name = e.target.name;
+    const set_username = e => {
         const value = e.target.value;
-        this.setState(prevstate => {
-            const newState = { ...prevstate };
-            newState[name] = value;
-            return newState;
-        });
+        setUsername(value);
+    }
+    const set_password = (e) => {
+        const value = e.target.value;
+        setPassword(value);
+
+    };
+    const set_password_again = (e) => {
+        const value = e.target.value;
+        setPasswordAgain(value);
+
     };
 
-    handleWrongPass = (e) => {
+
+    const handleWrongPass = (e) => {
         e.preventDefault();
         console.log("Passwords Dont Match");
     }
 
-    render() {
-        return (
-
+    return (
+        <div className='register-screen'>
             <form>
-                <h3>Sign Up</h3>
+                <div className='heading'>
+                    <h3>Sign Up</h3>
+
+                </div>
 
                 <div className="form-group">
                     <label>First name</label>
@@ -37,8 +44,8 @@ export default class Register extends Component {
                         placeholder="Username"
                         type="text"
                         name="username"
-                        value={this.state.username}
-                        onChange={this.handle_change}
+                        value={username}
+                        onChange={set_username}
                     />                            </div>
 
 
@@ -49,8 +56,8 @@ export default class Register extends Component {
                         placeholder="Enter password"
                         type="password"
                         name="password"
-                        value={this.state.password}
-                        onChange={this.handle_change}
+                        value={password}
+                        onChange={set_password}
                     />
                 </div>
                 <div className="form-group">
@@ -60,30 +67,30 @@ export default class Register extends Component {
                         placeholder="Re-Enter password"
                         type="password"
                         name="passwordAgain"
-                        value={this.state.passwordAgain}
-                        onChange={this.handle_change}
+                        value={passwordAgain}
+                        onChange={set_password_again}
                     />
                 </div>
 
                 <button
                     type="submit"
-                    className="btn btn-primary btn-block"
+                    className="btn btn-primary btn-block mb-3"
                     onClick={(e) => {
-                        (this.state.password === this.state.passwordAgain)
-                            ? this.props.handle_signup(e, this.state)
-                            : this.handleWrongPass(e)
+                        (password === passwordAgain)
+                            ? handle_signup(e, { username, password, passwordAgain })
+                            : handleWrongPass(e)
                     }}>Sign Up</button>
                 <p className="forgot-password text-right">
-                    Already registered <a href="#">sign in?</a>
+                    Already registered <button className='btn btn-primary' onClick={() => setDisplayForm(true)}>Sign In</button>
                 </p>
             </form>
-
-
-
-
-        )
-    }
+        </div>
+    )
 }
+
+export default Register
+
+
 Register.propTypes = {
     handle_signup: PropTypes.func.isRequired
 };

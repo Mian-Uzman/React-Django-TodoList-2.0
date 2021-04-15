@@ -1,6 +1,12 @@
+* {
+margin:0;
+}
+
 .all-lists{
-    width: 50%;
-margin-left: 30px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
 }
 
 .heading{
@@ -17,6 +23,7 @@ margin-left: 30px;
 }
 
 .item-input{
+    
     margin-top: 50px;
     width: 30%;
     margin-bottom: 50px;
@@ -37,5 +44,23 @@ margin-left: 30px;
 
 .footer{
     margin-top: 200px;
- 
+    max-height: 20px;
+}
+.footer-list {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.login-screen{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+}
+.register-screen{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
 }
