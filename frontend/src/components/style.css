@@ -20,12 +20,7 @@ margin:0;
     margin-bottom: 50px;
 }
 
-.login-page{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+
 
 .home-card{
     margin-top: 50px;
@@ -38,7 +33,7 @@ margin:0;
 }
 .footer-list {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-direction: row;
 }
 
@@ -47,15 +42,20 @@ margin:0;
     margin-left: auto;
     margin-right: auto;
     border-style: solid;
-    border-radius: 10px;
+    border-radius: 15px;
     border-color: #787878;
     width: 400px;
-    padding: 10px;
+    padding: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
 }
 .register-screen{
-    padding: 10px;
+    padding: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     border-style: solid;
-    border-radius: 10px;
+    border-radius: 15px;
     border-color: #787878;
     margin-top: 100px;
     margin-left: auto;
