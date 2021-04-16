@@ -8,8 +8,8 @@ function List({ todolist, deleteList }) {
                 todolist.map((item, index) => (
                     <tr key={item.id}>
                         <td style={{ width: '10%' }} className="table-active">{index + 1}</td>
-                        <td style={{ width: '50%' }}>{item.name}</td>
-                        <td style={{ width: '40%' }}>
+                        <td style={{ width: '60%' }}>{item.name}</td>
+                        <td style={{ width: '30%' }}>
                             <Link
                                 to={{
                                     pathname: `/lists/${item.id}`,

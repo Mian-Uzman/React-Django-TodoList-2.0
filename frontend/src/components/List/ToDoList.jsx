@@ -59,7 +59,7 @@ function ToDoList() {
     return (
         <div className='all-lists'>
             <h3>Total Lists: {todolist.length}</h3>
-            <Table className="table table-bordered table-hover" >
+            <Table style={{ textAlign: 'center' }} className="table table-bordered table-hover" >
                 <thead className="thead-dark">
                     <tr>
                         <th>ID</th>

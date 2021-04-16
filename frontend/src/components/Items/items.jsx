@@ -154,12 +154,11 @@ function Items(props) {
         <div className="all-lists">
             <h3>Items in: {name} </h3>
             {renderDropdown()}
-            <Table className="table table-bordered table-hover  mt-3">
+            <Table style={{ textAlign: 'center' }} className="table table-bordered table-hover  mt-3">
 
                 <thead className="thead-dark">
                     <tr>
                         <th >ID</th>
-                        <th>Status</th>
                         <th>Item Name</th>
                         <th>Edit</th>
                     </tr>
@@ -168,24 +167,26 @@ function Items(props) {
                     {allItems.map((item, index) => (
                         <tr key={item.id}>
                             <td className="table-active" style={{ width: '10%' }}>{index + 1}</td>
-                            <td style={{ width: '15%' }}> {showStatus(item)}</td>
-                            <td style={{ width: '45%' }}>
-                                <InputGroup className="mb-1 mt-1">
+                            <td style={{ width: '60%' }}>
+                                <InputGroup className="mb-1">
                                     <InputGroup.Prepend>
+
                                         <InputGroup.Checkbox
                                             checked={item.complete}
                                             onChange={(e) => handleUpdateComplete(item, e)} />
                                     </InputGroup.Prepend>
+
                                     <FormControl
                                         aria-label="Text input with checkbox"
                                         placeholder={item.text}
                                         onChange={(e) => handleUpdateText(item, e)} />
                                 </InputGroup>
+                                <p style={{ fontWeight: '300', fontSize: '16px' }}>Status: {showStatus(item)}</p>
                             </td>
                             <td style={{ width: '30%' }}>
 
                                 <button
-                                    className="btn btn-sm mt-1 btn-outline-info mr-2"
+                                    className="btn btn-sm mt-1 btn-outline-info mr-1"
                                     onClick={() => updateItem(item)}>Update
                             </button>
                                 <button
