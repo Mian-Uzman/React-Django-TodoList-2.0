@@ -14,11 +14,11 @@ function HomePage() {
                     <Card>
                         <Card.Body>
                             <Card.Header>Create a List Now !</Card.Header>
-                            <Card.Subtitle className="mb-2 mt-2 text-muted">Add your first list to start getting things done!</Card.Subtitle>
+                            <Card.Subtitle className="mb-2 mt-2 text-muted">Add a list now to start getting things done!</Card.Subtitle>
                             <Card.Text>
                                 Each individual list can contain sub-items related to it.
                     </Card.Text>
-                            <Card.Link href="/lists/">Add your first list...</Card.Link>
+                            <Card.Link href="/lists/">Add a list...</Card.Link>
                         </Card.Body>
                     </Card>
                 </div>

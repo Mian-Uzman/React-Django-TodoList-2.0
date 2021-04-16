@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 
 
-function Login({ handle_login, setDisplayForm }) {
+function Login({ handle_login, setDisplayForm, authError }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -56,7 +56,7 @@ function Login({ handle_login, setDisplayForm }) {
                         <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                     </div>
                 </div>
-
+                {authError ? <p style={{ textAlign: 'center', color: 'red' }}>Wrong Email or Password!</p> : <></>}
                 <button
                     type="submit"
                     className="btn btn-outline-dark btn-block mb-3"

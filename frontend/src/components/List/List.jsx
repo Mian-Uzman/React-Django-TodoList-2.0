@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
@@ -17,10 +16,10 @@ function List({ todolist, deleteList }) {
                                     name: item.name,
 
                                 }}>
-                                <button className=" btn btn-outline-info" >Add Item</button>
+                                <button className="btn mt-1 btn-sm btn-outline-info" >Add Item</button>
 
                             </Link>
-                            <button className="ml-3 btn btn-outline-danger" onClick={() => deleteList(item)}>Delete</button>
+                            <button className="ml-3 mt-1 btn btn-sm btn-outline-danger" onClick={() => deleteList(item)}>Delete</button>
 
 
                         </td>

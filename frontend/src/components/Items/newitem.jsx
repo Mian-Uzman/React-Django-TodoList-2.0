@@ -25,7 +25,7 @@ function NewItem({ handleAddText, handleSubmitButton }) {
                             </button>
 
                 <Link to="/lists/">
-                    <button className="ml-2 btn btn-outline-dark" variant="dark">Back</button>
+                    <button className="ml-2 btn btn-outline-dark">Back</button>
                 </Link>
             </div>
         </React.Fragment>

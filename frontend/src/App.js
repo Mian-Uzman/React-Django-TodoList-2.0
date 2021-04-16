@@ -17,6 +17,7 @@ function App() {
   const [username, SetUsername] = useState('');
   const [logged_in, SetLoggedIn] = useState(localStorage.getItem('token') ? true : false);
   const [displayForm, setDisplayForm] = useState(true);
+  const [authError, setAuthError] = useState(false);
 
 
 
@@ -31,9 +32,15 @@ function App() {
     })
       .then(res => res.json())
       .then(json => {
-        localStorage.setItem('token', json.token);
-        SetLoggedIn(true);
-        SetUsername(json.username);
+        if (json['token']) {
+          localStorage.setItem('token', json.token);
+          SetLoggedIn(true);
+          SetUsername(json.username);
+        }
+        else {
+          setAuthError(true);
+        }
+
       }).catch(err => console.log(err));
 
   };
@@ -84,7 +91,7 @@ function App() {
     return (
       <div >
         {displayForm ? (
-          <Login handle_login={handle_login} setDisplayForm={setDisplayForm} />
+          <Login handle_login={handle_login} setDisplayForm={setDisplayForm} authError={authError} />
         ) :
           <Register handle_signup={handle_signup} setDisplayForm={setDisplayForm} />
         }

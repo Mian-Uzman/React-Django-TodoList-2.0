@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import '../style.css';
 
 
@@ -15,18 +15,18 @@ function Footer() {
                     <ul className='footer-list'>
                         <button
                             type="button"
-                            className="btn btn-outline-light"
-                            href='https://www.linkedin.com/in/mian-uzman-munib-b250501ba/'>LinkedIn
+                            className="btn btn-outline-light">
+                            <a style={{ textDecoration: 'none', color: 'white' }} href='https://www.linkedin.com/in/mian-uzman-munib-b250501ba/'>LinkedIn</a>
                         </button>
                         <button
                             type="button"
-                            className="btn  btn-outline-light"
-                            href='https://www.instagram.com/mian__uzman/'>Instagram
+                            className="btn  btn-outline-light">
+                            <a style={{ textDecoration: 'none', color: 'white' }} href='https://www.instagram.com/mian__uzman/'>Instagram</a>
                         </button>
                         <button
                             type="button"
-                            className="btn  btn-outline-light"
-                            href='https://www.facebook.com/uzman.munib/'>Facebook
+                            className="btn  btn-outline-light">
+                            <a style={{ textDecoration: 'none', color: 'white' }} href='https://www.facebook.com/uzman.munib/'>Facebook</a>
                         </button>
 
                     </ul>

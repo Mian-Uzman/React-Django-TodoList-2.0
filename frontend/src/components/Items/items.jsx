@@ -3,9 +3,7 @@ import axios from "axios";
 import NewItem from "./NewItem";
 import { InputGroup, FormControl } from "react-bootstrap";
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
 import { Dropdown, DropdownButton } from 'react-bootstrap';
-import { alignPropType } from 'react-bootstrap/esm/DropdownMenu';
 
 
 
@@ -187,13 +185,11 @@ function Items(props) {
                             <td style={{ width: '30%' }}>
 
                                 <button
-                                    type="button"
-                                    className="btn btn-sm btn-outline-info mr-2"
+                                    className="btn btn-sm mt-1 btn-outline-info mr-2"
                                     onClick={() => updateItem(item)}>Update
                             </button>
                                 <button
-                                    type="button"
-                                    className="btn btn-sm btn-outline-danger"
+                                    className="btn btn-sm mt-1 btn-outline-danger"
                                     onClick={() => deleteItem(item)}>Delete
                             </button>
 
